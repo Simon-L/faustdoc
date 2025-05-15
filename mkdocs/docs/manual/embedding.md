@@ -87,6 +87,7 @@ Note that the resulting `llvm_dsp*` pointer type (see [`faust/dsp/llvm-dsp.h`](h
 
 Then the DSP object has to be connected to an audio driver to be rendered (see the `m_dsp->compute(128, m_input, m_output);` block). A more complete C++ example can be [found here](https://github.com/grame-cncm/faust/blob/master-dev/tests/llvm-tests/llvm-test.cpp). A example using the pure C API can be [found here](https://github.com/grame-cncm/faust/blob/master-dev/tests/llvm-tests/llvm-test.c). 
 
+If your project uses OpenGL, it is known to cause crashes on Linux because the OpenGL renderer will dynamically load the system's LLVM and conflict with the LLVM symbols in the Faust library. The solution is to use a linker version script to wrap your executable in a version tag that will avoid clashes. See [this post](https://discourse.llvm.org/t/can-something-be-done-with-the-inconsistency-in-registered-commandline-options-error/1720/8).
 
 ## Using libfaust with the Interpreter backend
 
